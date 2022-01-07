@@ -18,8 +18,9 @@ function onTick()
         r1V[i]= input.getNumber(16+i)
     end
     
-    if(r0X and r0A<100 and r0A>0) then
-        r0O=((r0O-100)/100)+adr
+    if(r0X and r0A>1000) then
+        r0O=(r0O/1000)+adr
+		r0A=r0A-1000
         output.setBool(14,true)
         output.setNumber(14,r0A)
         output.setNumber(15,r0C)
@@ -37,7 +38,8 @@ function onTick()
         end
 	end
     if(r1X and wholeOnly(r1A)==adr) then
-        r1A=((r1A-adr)*100)+100
+        r1A=(r1A-adr)*1000
+		r1O=r1O+1000
         output.setBool(1,true)
         output.setNumber(1,r1A)
         output.setNumber(2,r1C)
@@ -46,7 +48,7 @@ function onTick()
             output.setNumber(3+i,r1V[i])
         end
     else
-        output.setBool(1,false)
+		output.setBool(1,false)
         output.setNumber(1,0)
         output.setNumber(2,0)
         output.setNumber(3,0)
@@ -54,13 +56,11 @@ function onTick()
             output.setNumber(3+i,0)
         end
 	end
-    if(r0X and r0A==100) then
+    if(r0X and r0A==1000) then
         if(r0C==1) then
-            if(r0V[1]<100 and r0V[1]>0) then
-                adr=r0V[1]
-            end
+			if(r0V[1]<100 and r0V[1]>0) then adr=r0V[1] end
         elseif(r0C==101) then
-            tT=10
+			tT=10
             output.setBool(1,true)
             output.setNumber(1,r0O)
             output.setNumber(2,201)
@@ -70,11 +70,11 @@ function onTick()
     end
 	tT=tT-1
 	if(tT==0) then
-        output.setBool(1,false)
-        output.setNumber(1,0)
-        output.setNumber(2,0)
-        output.setNumber(3,0)
-        output.setNumber(4,0)
+		output.setBool(1,false)
+		output.setNumber(1,0)
+		output.setNumber(2,0)
+		output.setNumber(3,0)
+		output.setNumber(4,0)
 	end
 end
 
