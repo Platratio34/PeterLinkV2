@@ -26,7 +26,6 @@ If applicable, add screenshots to help explain your problem.
 **Desktop (please complete the following information):**
  - OS: [e.g. iOS]
  - Stormworkks Version [e.g. 22]
- - Peter Link 2 Version [e.g. 1.0]
 
 **Additional context**
 Add any other context about the problem here.
