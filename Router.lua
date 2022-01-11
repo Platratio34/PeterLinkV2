@@ -19,8 +19,7 @@ function onTick()
     end
     
     if(r0X and r0A>1000) then
-        r0O=(r0O/1000)+adr
-        r0A=r0A-1000
+        r0O=(adr/1000)+r0O
         output.setBool(14,true)
         output.setNumber(14,r0A)
         output.setNumber(15,r0C)
@@ -36,10 +35,9 @@ function onTick()
         for i=1,10 do
             output.setNumber(16+i,0)
         end
-	end
-    if(r1X and wholeOnly(r1A)==adr) then
-        r1A=(r1A-adr)*1000
-        r1O=r1O+1000
+    end
+    if(r1X and r1A>(adr*1000) and r1A<(adr*1000+1000)) then
+        r1A=r1A-(adr*1000)
         output.setBool(1,true)
         output.setNumber(1,r1A)
         output.setNumber(2,r1C)
@@ -55,7 +53,7 @@ function onTick()
         for i=1,10 do
             output.setNumber(3+i,0)
         end
-	end
+    end
     if(r0X and r0A==1000) then
         if(r0C==1) then
 	    if(r0V[1]<1000 and r0V[1]>0) then adr=r0V[1] end
@@ -76,8 +74,4 @@ function onTick()
 		output.setNumber(3,0)
 		output.setNumber(4,0)
 	end
-end
-
-function wholeOnly(n)
-    return n-(((n*10)%10)/10)
 end
